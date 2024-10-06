@@ -1,0 +1,77 @@
+#https://colab.research.google.com/drive/1vmUcINJoXgkyeOp6mxumr6QUxVCyYLs7#scrollTo=thrr7q0fhAzt
+#Numeros generados de manera completamente aleatoria
+import numpy as np
+import random
+import scipy.stats as stats
+import matplotlib
+import matplotlib.pyplot as plt
+
+#np.random.seed(10)
+
+numeros=np.random.randint(0,100,100)
+print(numeros)
+cantidades=[0,0,0,0,0]
+for i in range(100):
+  if numeros[i]>=0 and numeros[i]<=20:
+    cantidades[0]=cantidades[0]+1
+  if numeros[i]>=21 and numeros[i]<=40:
+    cantidades[1]=cantidades[1]+1
+  if numeros[i]>=41 and numeros[i]<=60:
+    cantidades[2]=cantidades[2]+1
+  if numeros[i]>=61 and numeros[i]<=80:
+    cantidades[3]=cantidades[3]+1
+  if numeros[i]>=81 and numeros[i]<=100:
+    cantidades[4]=cantidades[4]+1
+
+#print(cantidades)
+
+stats.kstest(numeros-numeros.mean()/numeros.std(),stats.norm.cdf)
+p=stats.kstest((numeros-numeros.mean())/numeros.std(),stats.norm.cdf).pvalue
+intervalos=["0-20","21-40","41-60","61-80","81-100"]
+fig, ax=plt.subplots()
+ax.set_ylabel('Cantidad')
+ax.set_title('Cantidad de numeros por intervalos')
+plt.bar(intervalos,cantidades)
+plt.savefig('barras_simple.png')
+plt.show()
+
+print("Valor de p: ",p)
+if p<0.05:
+    print("Hipotesis nula rechazada por lo tanto la distribución NO es normal")
+else:
+    print("Hipotesis nula no rechazada por lo tanto la distribución es normal")
+
+#Numeros generados aleatoriamente siguiendo una distribucion normal
+#np.random.seed(10)
+numeros=np.random.normal(50,10,100)
+print(numeros)
+
+cantidades=[0,0,0,0,0]
+for i in range(100):
+  if numeros[i]>=0 and numeros[i]<=20:
+    cantidades[0]=cantidades[0]+1
+  if numeros[i]>=21 and numeros[i]<=40:
+    cantidades[1]=cantidades[1]+1
+  if numeros[i]>=41 and numeros[i]<=60:
+    cantidades[2]=cantidades[2]+1
+  if numeros[i]>=61 and numeros[i]<=80:
+    cantidades[3]=cantidades[3]+1
+  if numeros[i]>=81 and numeros[i]<=100:
+    cantidades[4]=cantidades[4]+1
+print(cantidades)
+
+stats.kstest(numeros-numeros.mean()/numeros.std(),stats.norm.cdf)
+p=stats.kstest((numeros-numeros.mean())/numeros.std(),stats.norm.cdf).pvalue
+intervalos=["0-20","21-40","41-60","61-80","81-100"]
+fig, ax=plt.subplots()
+ax.set_ylabel('Cantidad')
+ax.set_title('Cantidad de numeros por intervalos')
+plt.bar(intervalos,cantidades)
+plt.savefig('barras_simple.png')
+plt.show()
+
+print("Valor de p: ",p)
+if p<0.05: 
+    print("Hipotesis nula rechazada por lo tanto la distribución NO es normal")
+else:
+    print("Hipotesis nula no rechazada por lo tanto la distribución es normal")
