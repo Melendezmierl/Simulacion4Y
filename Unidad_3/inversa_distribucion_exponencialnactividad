@@ -1,3 +1,4 @@
+#https://colab.research.google.com/drive/19O0W2ZOQBNuzdVUIJ24tLIoJyouPNlNB#scrollTo=vHMcRRSNMhV2
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
